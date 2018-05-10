@@ -1,0 +1,5 @@
+/home/the-user/Downloads/cadproj-01/CMakeFiles/rebuild_cache.dir
+/home/the-user/Downloads/cadproj-01/CMakeFiles/wb.dir
+/home/the-user/Downloads/cadproj-01/CMakeFiles/edit_cache.dir
+/home/the-user/Downloads/cadproj-01/CMakeFiles/histogram_equalization.dir
+/home/the-user/Downloads/cadproj-01/CMakeFiles/clean_cuda_depends.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   CMakeFiles/histogram_equalization.dir/src/histogram_equalization_generated_histogram_equalization.cu.o  -o histogram_equalization -rdynamic -Wl,-Bstatic -lcudart_static -Wl,-Bdynamic -lpthread -ldl -lrt libwb.a -lm -lcuda -lrt -Wl,-Bstatic -lcudart_static -Wl,-Bdynamic -lpthread -ldl -lrt 

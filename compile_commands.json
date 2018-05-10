@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbArg.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbArg.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbArg.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbCUDA.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbCUDA.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbCUDA.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbDataset.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbDataset.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbDataset.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbDirectory.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbDirectory.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbDirectory.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbExit.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbExit.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbExit.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbExport.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbExport.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbExport.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbFile.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbFile.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbFile.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbImage.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbImage.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbImage.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbImport.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbImport.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbImport.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbInit.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbInit.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbInit.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbLogger.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbLogger.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbLogger.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbMPI.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbMPI.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbMPI.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbPPM.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbPPM.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbPPM.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbPath.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbPath.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbPath.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbSolution.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbSolution.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbSolution.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbSparse.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbSparse.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbSparse.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbTimer.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbTimer.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbTimer.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/wbUtils.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/wbUtils.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/wbUtils.cpp"
+},
+{
+  "directory": "/home/the-user/Downloads/cadproj-01",
+  "command": "/usr/bin/c++   -DWB_USE_CUDA -I/home/the-user/Desktop/CAD/TP1/libwb   -std=c++11 -Wno-dollar-in-identifier-extension -O3 -DNDEBUG   -Wno-unused-function -Wno-unused-parameter -Wextra -Wno-unused-variable -std=c++11 -o CMakeFiles/wb.dir/home/the-user/Desktop/CAD/TP1/libwb/vendor/json11.cpp.o -c /home/the-user/Desktop/CAD/TP1/libwb/vendor/json11.cpp",
+  "file": "/home/the-user/Desktop/CAD/TP1/libwb/vendor/json11.cpp"
+}
+]
