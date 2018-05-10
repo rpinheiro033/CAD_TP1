@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
 
   int max_ = imageWidth * imageHeight * imageChannels;
   vectorAdd<<<max_/THREADS_NUMBER,THREADS_NUMBER>>>(imageData_, &ucharImage, max_);
-  cudaDeviceSynchronize();
+  //cudaDeviceSynchronize();
   cudaMemcpy(&ucharImageFinal, ucharImageFinal_, size_char_image, cudaMemcpyDeviceToHost);
 
   //cudaFree(grayImageFinal_);
