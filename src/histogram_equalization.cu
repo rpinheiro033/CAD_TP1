@@ -40,8 +40,8 @@ __global__ void greyScaleTransf(unsigned char* ucharImage, unsigned char* greyIm
 __global__ void histogram_comput(int* histogramAux, unsigned char* greyImage, int n) {
   int index = threadIdx.x + blockDim.x * blockIdx.x;
   if(index < n) {
-    int c = histogramAux[index];
-    atomicAdd(&greyImage[c], 1);
+    int c = (int) greyImage[index];
+    atomicAdd(&histogramAux[c], 1);
   }
 }
 
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
 
   dim3 dimBlock(THREADS_NUMBER, THREADS_NUMBER);
   dim3 dimGrid((int)ceil(valueHistogram/dimBlock.x), (int)ceil(valueHistogram/dimBlock.y));
-  greyScaleTransf<<<dimGrid, dimBlock>>>(&ucharImage, &grayImage, valueHistogram);
+  //greyScaleTransf<<<dimGrid, dimBlock>>>(&ucharImage, &grayImage, valueHistogram);
   cudaDeviceSynchronize();
   cudaMemcpy(grayImageFinal_, &grayImageFinal, size_grayImage, cudaMemcpyDeviceToHost);
  //wbTime_stop(GPU, "Doing GPU Computation (memory + compute)");
