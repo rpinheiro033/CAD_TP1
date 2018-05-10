@@ -109,16 +109,12 @@ int main(int argc, char **argv) {
  //wbTime_stop(GPU, "Doing GPU Computation (memory + compute)");
 
   int * histoLength;
-  int length = sizeof(int&) * valueHistogram;
+  int length = sizeof(int) * valueHistogram;
 
   cudaMalloc((void**) &histoLength, length);
   cudaMemset((void**) &histoLength, 0, length);
 
-  for(int i = 0; i < sizeof(histoLength); i++) {
-    printf("Positions of histogram: %d\n", histoLength[i]);
-  }
-
-
+  printf("Am I here?");
   int * histoLengthToPrint = new int[valueHistogram];
   histogram_comput<<<valueHistogram/THREADS_NUMBER, THREADS_NUMBER>>>(histoLength, grayImageFinal_, valueHistogram);
   cudaDeviceSynchronize();
