@@ -86,49 +86,12 @@ int main(int argc, char **argv) {
   cudaDeviceSynchronize();
   cudaMemcpy(&ucharImageFinal, ucharImageFinal_, size_char_image, cudaMemcpyDeviceToHost);
 
- /* Step 2 */
- //wbTime_start(GPU, "Doing GPU Computation (memory + compute)");
- unsigned char *grayImage_;
- unsigned char grayImage;
-
- int size_grayImage = sizeof(unsigned char&);
-
- unsigned char *grayImageFinal_;
- unsigned char grayImageFinal;
-
- cudaMalloc((void**)&grayImage_, size_grayImage);
- cudaMalloc((void**)&grayImageFinal_, size_grayImage);
-
-  cudaMemcpy(grayImage_, &grayImage, size_grayImage, cudaMemcpyHostToDevice);
-
-  dim3 dimBlock(THREADS_NUMBER, THREADS_NUMBER);
-  dim3 dimGrid((int)ceil(valueHistogram/dimBlock.x), (int)ceil(valueHistogram/dimBlock.y));
-  //greyScaleTransf<<<dimGrid, dimBlock>>>(&ucharImage, &grayImage, valueHistogram);
-  cudaDeviceSynchronize();
-  cudaMemcpy(grayImageFinal_, &grayImageFinal, size_grayImage, cudaMemcpyDeviceToHost);
- //wbTime_stop(GPU, "Doing GPU Computation (memory + compute)");
-
-  int * histoLength;
-  int length = sizeof(int) * valueHistogram;
-
-  cudaMalloc((void**) &histoLength, length);
-  cudaMemset((void**) &histoLength, 0, length);
-
-  printf("Am I here?");
-  int * histoLengthToPrint = new int[valueHistogram];
-  //histogram_comput<<<valueHistogram/THREADS_NUMBER, THREADS_NUMBER>>>(histoLength, grayImageFinal_, valueHistogram);
-  cudaDeviceSynchronize();
-  cudaMemcpy(histoLength, &valueHistogram, length, cudaMemcpyDeviceToHost);
-
-  cudaFree(grayImageFinal_);
-  cudaFree(grayImage_);
+  //cudaFree(grayImageFinal_);
+  //cudaFree(grayImage_);
   cudaFree(ucharImageFinal_);
   cudaFree(ucharImage_);
   cudaFree(imageData_);
-  cudaFree(histoLength);
-
-  printf("imageWidth = %d\n", imageWidth);
-  printf("MAX = %d\n", max_);
+  //cudaFree(histoLength);
 
   return 0;
 }
