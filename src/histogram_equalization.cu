@@ -12,7 +12,7 @@
 __global__ void correctColorPicture(unsigned char* ucharImage, float * cdf, int* cdfMin, int n) {
     int index = threadIdx.x + blockIdx.x * blockDim.x;
     if(index < n)
-		ucharImage[index] = atomicMin(atomicMax(255*(cdf[index] - cdfMin[0])/(1 - cdfMin[0]), 0), 255);
+		ucharImage[index] = atomicMin(atomicMax(((float)255*(cdf[index] - cdfMin[0])/(1 - cdfMin[0])), 0), 255);
 }
  
 __global__ void vectorDeAdd(unsigned char* inputImage, float* finalImage, int n)
@@ -27,7 +27,7 @@ __global__ void vectorDeAdd(unsigned char* inputImage, float* finalImage, int n)
 __global__ void global_min(int* values, int* global_min) {
 	int i = threadIdx.x + blockDim.x * blockIdx.x; int
 	val = values[i];
-	atomicMin(global_min, val);
+	atomicMin(global_min[0], val);
 }
 
  __global__ void prescan(float* cdf, int* histogram, int n)
@@ -257,7 +257,6 @@ int main(int argc, char **argv) {
   cudaFree(d_histogram);
   cudaFree(d_finalCdf);
   cudaFree(d_global_min);
-  cudaFree(d_local_min);
   cudaFree(d_outputImageData);
   
   return 0;
