@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
   /* Cast the image from float to unsigned char */
   unsigned char *ucharImage_;
   unsigned char ucharImage;
-  int size_char_image = sizeof(unsigned char&);
+  int size_char_image = sizeof(unsigned char);
 
   unsigned char *ucharImageFinal_;
   unsigned char ucharImageFinal;
