@@ -17,22 +17,22 @@ int conflict_free_offset(int n)
     if (index < n)
 		cdf[index] = histogram[index] / n;
  }
- 
+
  __global__ void scan(float *g_odata, float *g_idata, int n)
 {
 	extern __shared__ float temp[];  // allocated on invocation
 	int thid = threadIdx.x;
 	int offset = 1;
-	
+
 	int ai = thid;
 	int bi = thid + (n/2);
 	int bankOffsetA = conflict_free_offset(ai);
 	int bankOffsetB = conflict_free_offset(bi);
 	temp[ai + bankOffsetA] = g_idata[ai];
 	temp[bi + bankOffsetB] = g_idata[bi];
-	
+
 	for (int d = n>>1; d > 0; d >>= 1)                    // build sum in place up the tree
-	{ 
+	{
 		__syncthreads();
 		if (thid < d)
 		{
@@ -50,7 +50,7 @@ int conflict_free_offset(int n)
 	{
 		offset >>= 1;
 		__syncthreads();
-		if (thid < d)                     
+		if (thid < d)
 		{
 			int ai = offset*(2*thid+1)-1;
 			int bi = offset*(2*thid+2)-1;
@@ -58,7 +58,7 @@ int conflict_free_offset(int n)
 			bi += conflict_free_offset(bi);
 			float t = temp[ai];
 			temp[ai] = temp[bi];
-			temp[bi] += t; 
+			temp[bi] += t;
 		}
 	}
 	__syncthreads();
@@ -102,110 +102,110 @@ int main(int argc, char **argv) {
 
   /* parse the input arguments */
   wbImage_t inputImage = wbImport(argv[1]);
-  
+
   int imageWidth    = wbImage_getWidth(inputImage);
   int imageHeight   = wbImage_getHeight(inputImage);
   int imageChannels = wbImage_getChannels(inputImage);
-  
+
   //step 1
   float *imageData = wbImage_getData(inputImage);
   float *d_imageData;
-  
+
   unsigned char *ucharImage;
   unsigned char *d_ucharImage;
-  
+
   int heightPerWidth = imageWidth * imageHeight;
   int max = heightPerWidth * imageChannels;
-  
+
   int ucharImageSize = max * sizeof(unsigned char);
   int imageFloatSize = max * sizeof(float);
-  
+
   cudaMalloc((void**)&d_imageData, imageFloatSize);
   cudaMalloc((void**)&d_ucharImage, ucharImageSize);
-  
+
   ucharImage = (unsigned char *)malloc(ucharImageSize);
-  
+
   cudaMemcpy(d_imageData, imageData, imageFloatSize, cudaMemcpyHostToDevice);
-  
+
   vectorAdd<<<max/THREADS_PER_BLOCK,THREADS_PER_BLOCK>>>(d_imageData, d_ucharImage, max);
-  
+
   cudaMemcpy(d_ucharImage, ucharImage, ucharImageSize, cudaMemcpyDeviceToHost);
-  
+
   free(imageData);
   cudaFree(d_imageData);
-  
+
   //step 2
   unsigned char *grayImage;
   unsigned char *d_grayImage;
-  
+
   int grayImageSize = heightPerWidth * sizeof(unsigned char);
-  
+
   cudaMalloc((void**)&d_grayImage, grayImageSize);
-  
+
   grayImage = (unsigned char *)malloc(grayImageSize);
-  
+
   dim3 dimBlock(THREADS_PER_BLOCK, THREADS_PER_BLOCK);
   dim3 dimGrid((int)ceil(heightPerWidth/dimBlock.x), (int)ceil(heightPerWidth/dimBlock.y));
-  
+
   greyScaleTransf<<<dimGrid, dimBlock>>>(d_ucharImage, d_grayImage, heightPerWidth);
-  
+
   cudaMemcpy(d_grayImage, grayImage, grayImageSize, cudaMemcpyDeviceToHost);
-  
+
   //step 3
   int *histogram;
   int *d_histogram;
-  
+
   int histogramSize = HISTOGRAM_LENGTH * sizeof(int);
-  
+
   cudaMalloc((void**)&d_histogram, histogramSize);
-  
+
   histogram = (int *)malloc(histogramSize);
-  
-  cudaMemSet((void**)&d_histogram, 0, histogramSize);
-  
+
+  cudaMemset((void**)&d_histogram, 0, histogramSize);
+
   histogram_comput<<<heightPerWidth/THREADS_PER_BLOCK,THREADS_PER_BLOCK>>>(d_histogram, d_grayImage, heightPerWidth);
-  
+
   cudaMemcpy(d_histogram, histogram, histogramSize, cudaMemcpyDeviceToHost);
-  
+
   //step 4
   float *cdf;
   float *d_cdf;
-  
+
   int cdfSize = HISTOGRAM_LENGTH * sizeof(float);
-  
+
   cudaMalloc((void**)&d_cdf, cdfSize);
-  
+
   cdf = (float *)malloc(cdfSize);
-  
+
   prescan<<<HISTOGRAM_LENGTH,1>>>(d_cdf, d_histogram, HISTOGRAM_LENGTH);
-  
+
   float *finalCdf;
   float *d_finalCdf;
-  
+
   int finalCdfSize = HISTOGRAM_LENGTH * sizeof(float);
-  
+
   cudaMalloc((void**)&d_finalCdf, finalCdfSize);
-  
+
   finalCdf = (float *)malloc(finalCdfSize);
-  
+
   scan<<<HISTOGRAM_LENGTH,1>>>(finalCdf, d_cdf, HISTOGRAM_LENGTH);
-  
+
   cudaMemcpy(d_finalCdf, finalCdf, finalCdfSize, cudaMemcpyDeviceToHost);
-  
+
   free(ucharImage);
   free(grayImage);
   free(histogram);
   free(cdf);
   free(finalCdf);
-  
+
   cudaFree(d_ucharImage);
   cudaFree(d_grayImage);
   cudaFree(d_histogram);
   cudaFree(d_cdf);
   cudaFree(d_finalCdf);
-  
- 
-  
-  
+
+
+
+
   return 0;
 }
