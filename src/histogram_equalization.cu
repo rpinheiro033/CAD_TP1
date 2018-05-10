@@ -6,12 +6,12 @@
 #define NUM_BANKS 16
 #define LOG_NUM_BANKS 4
 
-int conflict_free_offset(n)
+int conflict_free_offset(int n)
 {
-	return ((n) >> NUM_BANKS + (n) >> (2 * LOG_NUM_BANKS))
+	return ((n) >> NUM_BANKS + (n) >> (2 * LOG_NUM_BANKS));
 }
 
- __global__ void prescan(float *cdf, int* histogram, int n)
+ __global__ void prescan(float* cdf, int* histogram, int n)
  {
 	int index = threadIdx.x + blockIdx.x * blockDim.x;
     if (index < n)
