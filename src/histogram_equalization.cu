@@ -41,17 +41,13 @@ __global__ void histogram_comput(int* histogramAux, unsigned char* greyImage, in
   int index = threadIdx.x + blockDim.x * blockIdx.x;
   if(index < n) {
     int c = (int) greyImage[index];
-    printf("CRL = %d\n", c);
     atomicAdd(&histogramAux[c], 1);
   }
 }
 
 int main(int argc, char **argv) {
-  printf("CRLFODASSE\n");
   /* parse the input arguments */
   wbImage_t inputImage = wbImport(argv[1]);
-  printf("CRLFODASSE\n");
-
 
   //wbImage_t *inputImage_;
 
@@ -87,8 +83,7 @@ int main(int argc, char **argv) {
 
   int max_ = imageWidth * imageHeight * imageChannels;
   vectorAdd<<<max_/THREADS_NUMBER,THREADS_NUMBER>>>(imageData_, &ucharImage, max_);
-  printf("Cenas\n");
-  //cudaDeviceSynchronize();
+  cudaDeviceSynchronize();
   cudaMemcpy(&ucharImageFinal, ucharImageFinal_, size_char_image, cudaMemcpyDeviceToHost);
 
  /* Step 2 */
@@ -108,7 +103,6 @@ int main(int argc, char **argv) {
 
   dim3 dimBlock(THREADS_NUMBER, THREADS_NUMBER);
   dim3 dimGrid((int)ceil(valueHistogram/dimBlock.x), (int)ceil(valueHistogram/dimBlock.y));
-  printf("Cenas 2\n");
   greyScaleTransf<<<dimGrid, dimBlock>>>(&ucharImage, &grayImage, valueHistogram);
   cudaDeviceSynchronize();
   cudaMemcpy(grayImageFinal_, &grayImageFinal, size_grayImage, cudaMemcpyDeviceToHost);
@@ -119,6 +113,10 @@ int main(int argc, char **argv) {
 
   cudaMalloc((void**) &histoLength, length);
   cudaMemset((void**) &histoLength, 0, length);
+
+  for(int i = 0; i < sizeof(histoLength); i++) {
+    printf("Positions of histogram: %d\n", histoLength[i]);
+  }
 
 
   int * histoLengthToPrint = new int[valueHistogram];
