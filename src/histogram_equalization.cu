@@ -21,29 +21,29 @@ __global__ void vectorAdd(float* inputImage, unsigned char* ucharImage, int n) {
 }
 
 
-__global__ void greyScaleTransf(unsigned char* ucharImage, unsigned char* greyImage, int n) {
-  int col = threadIdx.x + blockIdx.x * blockDim.x;
-  int row = threadIdx.y + blockIdx.y * blockDim.y;
-  int index = col + row * n;
-  unsigned char r;
-  unsigned char g;
-  unsigned char b;
-
-  if (col < n && row < n) {
-    r = ucharImage[3*index];
-    g = ucharImage[3*index + 1];
-    b = ucharImage[3*index + 2];
-    greyImage[index] = (unsigned char) (0.21*r + 0.71*g + 0.07*b);
-  }
-}
-
-__global__ void histogram_comput(int* histogramAux, unsigned char* greyImage, int n) {
-  int index = threadIdx.x + blockDim.x * blockIdx.x;
-  if(index < n) {
-    int c = (int) greyImage[index];
-    atomicAdd(&histogramAux[c], 1);
-  }
-}
+// __global__ void greyScaleTransf(unsigned char* ucharImage, unsigned char* greyImage, int n) {
+//   int col = threadIdx.x + blockIdx.x * blockDim.x;
+//   int row = threadIdx.y + blockIdx.y * blockDim.y;
+//   int index = col + row * n;
+//   unsigned char r;
+//   unsigned char g;
+//   unsigned char b;
+//
+//   if (col < n && row < n) {
+//     r = ucharImage[3*index];
+//     g = ucharImage[3*index + 1];
+//     b = ucharImage[3*index + 2];
+//     greyImage[index] = (unsigned char) (0.21*r + 0.71*g + 0.07*b);
+//   }
+// }
+//
+// __global__ void histogram_comput(int* histogramAux, unsigned char* greyImage, int n) {
+//   int index = threadIdx.x + blockDim.x * blockIdx.x;
+//   if(index < n) {
+//     int c = (int) greyImage[index];
+//     atomicAdd(&histogramAux[c], 1);
+//   }
+// }
 
 int main(int argc, char **argv) {
   /* parse the input arguments */
