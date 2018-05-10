@@ -6,10 +6,8 @@
 #define NUM_BANKS 16
 #define LOG_NUM_BANKS 4
 
-int conflict_free_offset(int n)
-{
-	return ((n) >> NUM_BANKS + (n) >> (2 * LOG_NUM_BANKS));
-}
+#define CONFLICT_FREE_OFFSET(n) \
+			((n) >> NUM_BANKS + (n) >> (2 * LOG_NUM_BANKS))
 
  __global__ void prescan(float* cdf, int* histogram, int n)
  {
@@ -26,8 +24,8 @@ int conflict_free_offset(int n)
 
 	int ai = thid;
 	int bi = thid + (n/2);
-	int bankOffsetA = conflict_free_offset(ai);
-	int bankOffsetB = conflict_free_offset(bi);
+	int bankOffsetA = CONFLICT_FREE_OFFSET(ai);
+	int bankOffsetB = CONFLICT_FREE_OFFSET(bi);
 	temp[ai + bankOffsetA] = g_idata[ai];
 	temp[bi + bankOffsetB] = g_idata[bi];
 
@@ -38,14 +36,14 @@ int conflict_free_offset(int n)
 		{
 			int ai = offset*(2*thid+1)-1;
 			int bi = offset*(2*thid+2)-1;
-			ai += conflict_free_offset(ai);
-			bi += conflict_free_offset(bi);
+			ai += CONFLICT_FREE_OFFSET(ai);
+			bi += CONFLICT_FREE_OFFSET(bi);
 			temp[bi] += temp[ai];
 		}
 		offset *= 2;
 	}
 	if (thid==0)
-		temp[n - 1 + conflict_free_offset(n - 1)] = 0;
+		temp[n - 1 + CONFLICT_FREE_OFFSET(n - 1)] = 0;
 	for (int d = 1; d < n; d *= 2) // traverse down tree & build scan
 	{
 		offset >>= 1;
@@ -54,8 +52,8 @@ int conflict_free_offset(int n)
 		{
 			int ai = offset*(2*thid+1)-1;
 			int bi = offset*(2*thid+2)-1;
-			ai += conflict_free_offset(ai);
-			bi += conflict_free_offset(bi);
+			ai += CONFLICT_FREE_OFFSET(ai);
+			bi += CONFLICT_FREE_OFFSET(bi);
 			float t = temp[ai];
 			temp[ai] = temp[bi];
 			temp[bi] += t;
