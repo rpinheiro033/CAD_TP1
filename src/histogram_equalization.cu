@@ -40,8 +40,8 @@ __global__ void greyScaleTransf(unsigned char* ucharImage, unsigned char* greyIm
 __global__ void histogram_comput(int* histogramAux, unsigned char* greyImage, int n) {
   int index = threadIdx.x + blockDim.x * blockIdx.x;
   if(index < n) {
-    int c = (int) greyImage[index];
-    atomicAdd(&histogramAux[c], 1);
+    int c = histogramAux[index];
+    atomicAdd(&greyImage[c], 1);
   }
 }
 
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 
   printf("Am I here?");
   int * histoLengthToPrint = new int[valueHistogram];
-  histogram_comput<<<valueHistogram/THREADS_NUMBER, THREADS_NUMBER>>>(histoLength, grayImageFinal_, valueHistogram);
+  //histogram_comput<<<valueHistogram/THREADS_NUMBER, THREADS_NUMBER>>>(histoLength, grayImageFinal_, valueHistogram);
   cudaDeviceSynchronize();
   cudaMemcpy(histoLength, &valueHistogram, length, cudaMemcpyDeviceToHost);
 
