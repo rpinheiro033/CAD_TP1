@@ -13,7 +13,7 @@
 }
 
 
-__global__ void vectorAdd(float*& inputImage, unsigned char*& ucharImage, int n) {
+__global__ void vectorAdd(float* inputImage, unsigned char* ucharImage, int n) {
     int index = threadIdx.x + blockIdx.x * blockDim.x;
     if (index < n)
         ucharImage[index] = (unsigned char) (255 * inputImage[index]);
@@ -61,8 +61,14 @@ int main(int argc, char **argv) {
 
   float * imageData = wbImage_getData(inputImage);
   float * imageData_;
-  int size = sizeof(float*&);
+  int size = sizeof(float*);
+  int sizeInts = sizeof(int);
   cudaMalloc((void**)&imageData_, size);
+
+  malloc(imageWidth);
+  malloc(imageHeight);
+  malloc(imageChannels);
+  malloc(valueHistogram);
 
   wbImage_t outputImage = wbImage_new(imageWidth, imageHeight, imageChannels);
   // histogram_equalization(inputImage, outputImage);
@@ -70,7 +76,7 @@ int main(int argc, char **argv) {
   /* Cast the image from float to unsigned char */
   unsigned char *ucharImage_;
   unsigned char ucharImage;
-  int size_char_image = sizeof(unsigned char&);
+  int size_char_image = sizeof(unsigned char);
 
   unsigned char *ucharImageFinal_;
   unsigned char ucharImageFinal;
@@ -82,7 +88,7 @@ int main(int argc, char **argv) {
   cudaMemcpy(ucharImage_, &ucharImage, size_char_image, cudaMemcpyHostToDevice);
 
   int max_ = imageWidth * imageHeight * imageChannels;
-  vectorAdd<<<max_/THREADS_NUMBER,THREADS_NUMBER>>>(imageData_, &ucharImage, max_);
+  vectorAdd<<<max_/THREADS_NUMBER,THREADS_NUMBER>>>(imageData_, &ucharImage, valueHistogram);
   //cudaDeviceSynchronize();
   cudaMemcpy(&ucharImageFinal, ucharImageFinal_, size_char_image, cudaMemcpyDeviceToHost);
 
@@ -92,6 +98,11 @@ int main(int argc, char **argv) {
   cudaFree(ucharImage_);
   cudaFree(imageData_);
   //cudaFree(histoLength);
+
+  free(imageWidth);
+  free(imageHeight);
+  free(imageChannels);
+  free(valueHistogram);
 
   return 0;
 }
